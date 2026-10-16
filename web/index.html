@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>无损音视频合并</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5h10l4 4v10H4z"/>
+            <path d="M9 3h10l4 4v10"/>
+            <path d="M9 13l2 2 4-4"/>
+          </svg>
+        </span>
+        <div>
+          <h1>无损音视频合并</h1>
+          <p id="engineStatus">正在检测 FFmpeg</p>
+        </div>
+      </div>
+      <div class="badge">copy stream</div>
+    </header>
+
+    <section class="workspace">
+      <form id="mergeForm" class="merge-form">
+        <div class="drop-grid">
+          <label class="drop-zone" id="videoZone" for="videoInput">
+            <input type="file" id="videoInput" accept=".mp4,.mov,.mkv,.avi,.webm,.m4v,.m4s,.ts,.m2ts,.flv,.wmv,.mpg,.mpeg,.3gp">
+            <span class="zone-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="14" height="14" rx="2"/>
+                <path d="M6 9l3 3 2-2 3 4"/>
+                <path d="M21 9l-3.5 6H21z"/>
+              </svg>
+            </span>
+            <strong>视频文件</strong>
+            <span class="zone-hint">点击选择或拖入视频</span>
+            <span class="file-meta" id="videoMeta">未选择</span>
+          </label>
+
+          <label class="drop-zone" id="audioZone" for="audioInput">
+            <input type="file" id="audioInput" accept=".mp3,.aac,.m4a,.m4s,.wav,.flac,.ogg,.opus,.wma,.aiff,.aif,.alac,.ac3,.mka">
+            <span class="zone-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V6l10-2v12"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="16" cy="16" r="3"/>
+              </svg>
+            </span>
+            <strong>音频文件</strong>
+            <span class="zone-hint">点击选择或拖入音频</span>
+            <span class="file-meta" id="audioMeta">未选择</span>
+          </label>
+        </div>
+
+        <div class="controls">
+          <label class="select-field" for="formatSelect">
+            <span>输出格式</span>
+            <select id="formatSelect">
+              <option value="auto" selected>自动选择（推荐）</option>
+              <option value="mp4">MP4</option>
+              <option value="mkv">MKV</option>
+              <option value="mov">MOV</option>
+              <option value="webm">WebM</option>
+              <option value="avi">AVI</option>
+              <option value="m4v">M4V</option>
+            </select>
+          </label>
+          <button type="submit" class="merge-btn" id="mergeBtn" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19V9a2 2 0 0 1 2-2h6l4-4v4h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
+              <path d="M12 10v8"/>
+              <path d="M9 15l3 3 3-3"/>
+            </svg>
+            开始合并
+          </button>
+        </div>
+      </form>
+
+      <section class="progress-panel" id="progressPanel" hidden>
+        <div class="progress-head">
+          <span id="progressStatus">准备中</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </section>
+
+      <section class="result-panel" id="resultPanel" hidden>
+        <div class="result-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <div class="result-copy">
+          <strong>合并完成</strong>
+          <span id="resultName"></span>
+        </div>
+        <a class="download-btn" id="downloadLink" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12"/>
+            <path d="M7 10l5 5 5-5"/>
+            <path d="M4 21h16"/>
+          </svg>
+          下载文件
+        </a>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+:root {
+  --bg: #eef2f6;
+  --surface: #ffffff;
+  --surface-2: #f7f9fc;
+  --border: #dce3ec;
+  --text: #16212e;
+  --muted: #66788d;
+  --accent: #0d6efd;
+  --accent-hover: #0a5bd4;
+  --teal: #0b8f8f;
+  --amber: #b7791f;
+  --danger: #d0342c;
+  --shadow: 0 12px 32px rgba(24, 39, 58, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+.app {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 48px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #10243a;
+  color: #7dd3fc;
+  flex: 0 0 auto;
+}
+
+.brand-mark svg,
+.zone-icon svg,
+.merge-btn svg,
+.download-btn svg,
+.result-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.brand p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.badge {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.workspace {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.drop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 24px;
+  border: 1.5px dashed #b9c6d5;
+  border-radius: 8px;
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: var(--accent);
+  background: #f0f6ff;
+}
+
+.drop-zone.has-file {
+  border-style: solid;
+  border-color: #8fc7b2;
+  background: #f1faf6;
+}
+
+.drop-zone input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.zone-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 3px 10px rgba(13, 110, 253, 0.12);
+}
+
+.drop-zone strong {
+  font-size: 16px;
+}
+
+.zone-hint {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.file-meta {
+  max-width: 100%;
+  margin-top: 14px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+}
+
+.select-field span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.select-field select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.select-field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.merge-btn,
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 46px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.merge-btn:hover:not(:disabled),
+.download-btn:hover {
+  background: var(--accent-hover);
+}
+
+.merge-btn:active:not(:disabled),
+.download-btn:active {
+  transform: translateY(1px);
+}
+
+.merge-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.progress-panel,
+.result-panel {
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.progress-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.progress-track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dbe4ee;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), #24a0a0);
+  transition: width 320ms ease;
+}
+
+.result-panel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-color: #b8dfce;
+  background: #f0faf5;
+}
+
+.result-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: #dff4e9;
+  color: #16865a;
+  flex: 0 0 auto;
+}
+
+.result-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.result-copy strong {
+  font-size: 15px;
+}
+
+.result-copy span {
+  color: var(--muted);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.download-btn {
+  height: 42px;
+  background: #157347;
+  text-decoration: none;
+}
+
+.download-btn:hover {
+  background: #0f5f3a;
+}
+
+.error-text {
+  color: var(--danger);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 720px) {
+  .app {
+    width: min(100% - 20px, 1120px);
+    padding: 16px 0 32px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .badge {
+    display: none;
+  }
+
+  .workspace {
+    padding: 16px;
+  }
+
+  .drop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .drop-zone {
+    min-height: 180px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .select-field,
+  .merge-btn {
+    width: 100%;
+  }
+
+  .result-panel {
+    flex-wrap: wrap;
+  }
+
+  .download-btn {
+    width: 100%;
+  }
+}
